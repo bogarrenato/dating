@@ -20,6 +20,9 @@ public static class ApplicationServiceExtensions
         services.AddCors();
         // AddScoped -  Created once by client request
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        // Auto mapper registration
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         return services;
     }
