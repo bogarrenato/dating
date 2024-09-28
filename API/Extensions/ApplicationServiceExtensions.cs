@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,12 @@ public static class ApplicationServiceExtensions
         // AddScoped -  Created once by client request
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPhotoService, PhotoService>();
         // Auto mapper registration
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        // Type safed cloudnaryis
+        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+
 
         return services;
     }
